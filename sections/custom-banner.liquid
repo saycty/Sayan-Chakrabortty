@@ -1,0 +1,71 @@
+{% comment %} Custom banner with top nav bar, figma-matched padding and gap {% endcomment %}
+<section style="background:#fafafa;overflow:hidden;">
+  <style>
+    html, body {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+  </style>
+  <nav style="display:flex;align-items:center;justify-content:space-between;width:1440px;height:64px;gap:340px;padding:0px;max-width:100vw;margin:0 auto;">
+    <div style="width:151.44px;height:19px;opacity:1;font-family:'Jost',sans-serif;font-weight:700;font-size:20px;letter-spacing:0px;color:#000;display:flex;align-items:center;justify-content:left;">
+      TISSO VISION
+    </div>
+    <div
+      class="nav-middle-text"
+      style="
+        width: 260px;
+        height: 14px;
+        opacity: 1;
+        font-family: 'Jost', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 13.42px;
+        letter-spacing: 0px;
+        text-align: center;
+        vertical-align: middle;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      Find the ideal gift for your loved ones
+    </div>
+    <button
+      class="nav-button"
+      style="
+        width: 207px;
+        height: 44px;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Jost', sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        background: #000;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+      "
+    >
+      CHOOSE GIFT →
+    </button>
+  </nav>
+  <section style="width:1440px;height:780px;opacity:1;top:-5px;position:relative;margin:0 auto;">
+    <section style="width:1440px;height:390px;opacity:1;overflow:hidden;margin:0 auto;padding:0;">
+      {% render 'banner-design' %}
+    </section>
+
+    <!-- Second instance, moved further down and right, reduced gap above banner -->
+    <section style="position:absolute;width:890px;height:200px;top:534px;left:536px;opacity:1;">
+      {% render 'banner-design' %}
+    </section>
+  </section>
+</section>
+{% schema %}
+{ "name": "Custom Banner", "settings": [] }
+{% endschema %}
