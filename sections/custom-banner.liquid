@@ -1,13 +1,20 @@
+<div style="position:absolute;width:180px;height:48px;top:705px;left:67px;opacity:1;z-index:2;background:#222;display:flex;align-items:center;justify-content:center;">
+  <button style="width:180px;height:48px;background:#000;color:#fff;border:2px solid #000;border-radius:8px;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s, color 0.2s;">
+    {{ section.settings.gift_guide_button | default: 'SHOP NOW' }}
+    <span style="margin-left:10px;font-size:20px;">→</span>
+  </button>
+</div>
 {% comment %} Custom banner with top nav bar, figma-matched padding and gap {% endcomment %}
 <section style="background:#fafafa;overflow:hidden;">
   <style>
-    html, body {
+    html,
+    body {
       overflow-x: hidden;
       overflow-y: hidden;
     }
   </style>
   <nav style="display:flex;align-items:center;justify-content:space-between;width:1440px;height:64px;gap:340px;padding:0px;max-width:100vw;margin:0 auto;">
-    <div style="width:151.44px;height:19px;opacity:1;font-family:'Jost',sans-serif;font-weight:700;font-size:20px;letter-spacing:0px;color:#000;display:flex;align-items:center;justify-content:left;">
+    <div style="width:157.44px;height:19px;opacity:1;font-family:'Jost',sans-serif;font-weight:700;font-size:23px;letter-spacing:0px;color:#000;display:flex;align-items:center;justify-content:left;">
       TISSO VISION
     </div>
     <div
@@ -19,7 +26,7 @@
         font-family: 'Jost', sans-serif;
         font-weight: 400;
         font-style: normal;
-        font-size: 16px;
+        font-size: 14px;
         line-height: 13.42px;
         letter-spacing: 0px;
         text-align: center;
@@ -32,9 +39,8 @@
     >
       Find the ideal gift for your loved ones
     </div>
-    <button
-      class="nav-button"
-      style="
+    <style>
+      .nav-button {
         width: 207px;
         height: 44px;
         opacity: 1;
@@ -44,15 +50,47 @@
         font-family: 'Jost', sans-serif;
         font-weight: 500;
         font-size: 15px;
-        background: #000;
-        color: #fff;
+        background: #fff544;
+        color: #222;
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        transition: background 0.3s, color 0.3s;
-      "
-    >
-      CHOOSE GIFT →
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: color 0.3s;
+      }
+      .nav-button::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0%;
+        height: 100%;
+        background: #000;
+        z-index: 0;
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .nav-button:hover::before {
+        width: 100%;
+      }
+      .nav-button span {
+        font-weight: 700;
+      }
+
+      .nav-button span,
+      .nav-button {
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s;
+      }
+      .nav-button:hover,
+      .nav-button:hover span {
+        color: #fff !important;
+      }
+    </style>
+    <button class="nav-button">
+      <span>CHOOSE GIFT →</span>
     </button>
   </nav>
   <section style="width:1440px;height:780px;opacity:1;top:-5px;position:relative;margin:0 auto;">
@@ -60,12 +98,44 @@
       {% render 'banner-design' %}
     </section>
 
-    <!-- Second instance, moved further down and right, reduced gap above banner -->
     <section style="position:absolute;width:890px;height:200px;top:534px;left:536px;opacity:1;">
       {% render 'banner-design' %}
     </section>
+    <div style="position:absolute;width:459px;height:70px;top:430px;left:67px;opacity:1;background:#fff;z-index:2;">
+      <div style="font-family:'Jost',sans-serif;font-size:70px;font-weight:500;font-style:normal;line-height:100%;letter-spacing:0px;vertical-align:middle;color:#222;height:70px;display:flex;align-items:center;">
+        {{ section.settings.gift_guide_title | default: 'The Gift Guide' }}
+      </div>
+    </div>
+    <div style="position:absolute;width:430px;height:84px;top:530px;left:67px;opacity:1;font-family:'Jost',sans-serif;font-weight:400;font-style:normal;font-size:17px;line-height:140%;letter-spacing:0px;vertical-align:middle;color:#222;display:flex;align-items:center;z-index:2;background:#fff;">
+      {{
+        section.settings.gift_guide_desc
+        | default: 'Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.'
+      }}
+    </div>
   </section>
 </section>
 {% schema %}
-{ "name": "Custom Banner", "settings": [] }
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "gift_guide_title",
+      "label": "Gift Guide Title",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "gift_guide_desc",
+      "label": "Gift Guide Description",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "gift_guide_button",
+      "label": "Gift Guide Button Text",
+      "default": "SHOP NOW"
+    }
+  ]
+}
 {% endschema %}
