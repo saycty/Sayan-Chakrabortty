@@ -1,0 +1,126 @@
+{% liquid
+  assign max_items = section.settings.max_products | default: 6
+  assign collection_handle = section.settings.collection
+  assign collection = collections[collection_handle]
+%}
+
+<section style="padding:60px 0; max-width:1400px; margin:0 auto;">
+  <h2
+    style="
+      font-family:'Jost',sans-serif;
+      font-size:40px;
+      font-weight:500;
+      color:#222;
+      margin-bottom:40px;
+      padding-left:20px;
+    "
+  >
+    {{ section.settings.grid_title }}
+  </h2>
+
+  {% if collection and collection.products_count > 0 %}
+    <div class="custom-grid">
+      {% for product in collection.products limit: max_items %}
+        <div class="grid-item">
+          <a href="{{ product.url }}" style="text-decoration:none;color:inherit;position:relative;display:block;">
+            <img
+              src="{{ product.featured_image | image_url: width: 600, height: 600 }}"
+              alt="{{ product.title }}"
+              width="600"
+              height="600"
+            >
+            <button
+              class="quick-add-btn"
+              type="button"
+              data-product-handle="{{ product.handle }}"
+              aria-label="Quick add to cart"
+            >
+              +
+            </button>
+            <div style="padding:16px 0 0 0;">
+              <div style="font-size:18px;font-weight:500;">{{ product.title }}</div>
+              <div style="font-size:16px;color:#666;">{{ product.price | money }}</div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div style="padding:40px 0;text-align:center;color:#888;">No products found in this collection.</div>
+  {% endif %}
+
+  <style>
+    .custom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 0 20px;
+    }
+    .custom-grid .grid-item img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      background: #f4f4f4;
+    }
+    .custom-grid .grid-item {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+      position: relative;
+    }
+    .custom-grid .grid-item:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    .quick-add-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      color: #222;
+      border: 1px solid #eee;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: background 0.2s, color 0.2s;
+    }
+    .quick-add-btn:hover {
+      background: #222;
+      color: #fff;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.quick-add-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var handle = btn.getAttribute('data-product-handle');
+          window.dispatchEvent(new CustomEvent('openQuickAdd', { detail: { handle: handle } }));
+        });
+      });
+    });
+  </script>
+</section>
+<script src="{{ 'custom-quick-add.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Custom Grid View",
+  "settings": [
+    { "type": "text", "id": "grid_title", "label": "Grid Title", "default": "Tisso vison in the wild" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "max_products", "label": "Product Count", "min": 1, "max": 16, "step": 1, "default": 8 }
+  ],
+  "presets": [{ "name": "Custom Grid View" }]
+}
+{% endschema %}

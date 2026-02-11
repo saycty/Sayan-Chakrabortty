@@ -6,6 +6,7 @@
     "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
     "strictNullChecks": true,
+    "ignoreDeprecations": "6.0",
     "types": ["./global.d.ts"],
     "paths": {
       "@theme/*": ["./*"]

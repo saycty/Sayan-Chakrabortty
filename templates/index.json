@@ -1,4 +1,12 @@
-// {
+// /*
+//  * ------------------------------------------------------------
+//  * IMPORTANT: The contents of this file are auto-generated.
+//  *
+//  * This file may be updated by the Shopify admin theme editor
+//  * or related systems. Please exercise caution as any changes
+//  * made to this file may be overwritten.
+//  * ------------------------------------------------------------
+//  */ {
 //   "sections": {
 //     "hero_jVaWmY": {
 //       "type": "hero",
@@ -45,10 +53,7 @@
 //           "blocks": {}
 //         }
 //       },
-//       "block_order": [
-//         "text_YLPk4p",
-//         "button_H9gpTf"
-//       ],
+//       "block_order": ["text_YLPk4p", "button_H9gpTf"],
 //       "name": "t:names.hero",
 //       "settings": {
 //         "media_type_1": "image",
@@ -275,13 +280,34 @@
 //       }
 //     }
 //   },
-//   "order": [
-//     "hero_jVaWmY",
-//     "product_list_fa6P9H"
-//   ]
+//   "order": ["hero_jVaWmY", "product_list_fa6P9H"]
 // }
 
 {
-  "sections": { "custom_banner": { "type": "custom-banner", "settings": {} } },
-  "order": ["custom_banner"]
+  "sections": {
+    "custom_banner": { "type": "custom-banner", "settings": {} },
+    "custom-grid": {
+      "type": "custom-grid",
+      "settings": {
+        "grid_title": "Tisso vison in the wild",
+        "collection": "all",
+        "max_products": 6,
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": ["custom_banner", "custom-grid"]
 }
