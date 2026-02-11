@@ -1,4 +1,4 @@
-
+{% comment %} 
 
 {% liquid
   assign order = 'logo,menu,localization,search,drawer_search,actions'
@@ -56,7 +56,7 @@
   endcapture
 
   capture navigation_bar
-    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'navigation_bar', transparent: transparent
+    content_for 'block', type: '_header-menu', id: 'header-navigation-bar', variant: 'navigation_bar', transparent: transparent
   endcapture
 
   capture actions
@@ -1435,5 +1435,12 @@
     }
   ],
   "presets": []
+}
+{% endschema %} {% endcomment %}
+
+{% schema %}
+{
+  "name": "t:names.header",
+  "settings":[]
 }
 {% endschema %}
